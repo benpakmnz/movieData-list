@@ -1,0 +1,45 @@
+.movieLayout{
+    display: flex;
+    margin: 40px;
+    width: 280px;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+
+.posterContainer{
+    width: 250px;
+    height: 250px;
+    border-radius:50%;
+    border: 1px solid black;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+
+.movieTitle{
+    font-size: 28px;
+    color: #0f3b54;
+    font-weight: bold;
+}
+
+.movieData{
+    text-align: left;
+    font-size: 16px;
+}
+
+p {
+    margin: 10px 0;
+    span{
+        font-weight: bold;  
+    }
+} 
+
+@media(max-width: 600px) {
+    
+}
+
+

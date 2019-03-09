@@ -1,0 +1,15 @@
+.movieButtonsContainer{
+    position: absolute;
+    display: none;
+
+
+}
+
+@media(max-width: 999px){
+    .movieButtonsContainer{
+        position: unset;
+        top: auto;
+        display: block;
+    }
+}
+

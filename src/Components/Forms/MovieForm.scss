@@ -1,0 +1,46 @@
+.formLayout{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 880px;
+    height: 500px;
+    border: 1px solid black;
+
+    img{
+        height: 500px;
+    }
+
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    p{
+        text-align: left;
+        margin-bottom: 0;
+        
+    }
+
+    input{
+        display: block;
+        width: 350px;
+        height: 35px;
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 25px;
+        padding: 0 10px;
+    }
+
+    input:focus, textarea:focus, select:focus {
+    outline: none;
+    background: #0f3b5424;
+    }
+
+    
+
+}
