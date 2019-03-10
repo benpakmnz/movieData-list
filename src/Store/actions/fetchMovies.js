@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const setMovieList = (movieList) => {
+export const setMovieList = (payload) => {
     return {
         type: actionTypes.SET_MOVIELIST,
-        moviesDataList: movieList
+        payload
     }
 }
 
@@ -33,17 +33,17 @@ export const initMovies = () => {
     };
 };
 
-export const movieFormSubmit = (movie) => {
+export const movieFormSubmit = (payload) => {
     return{
     type: actionTypes.FORM_SUBMIT,
-    movieData: movie
+    payload
     }
 };
 
-export const deleteMovie = (movieId) => {
+export const deleteMovie = (payload) => {
     return{
         type: actionTypes.DELETE_MOVIE,
-        movieIdToDelete: movieId
+        payload
     }
 }
 

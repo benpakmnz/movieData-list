@@ -10,14 +10,14 @@ const fetchMoviesReducer = (state = initialState, action) => {
         case actionTypes.SET_MOVIELIST:
             return {
                 ...state,
-                moviesDataList: [action.moviesDataList, ...state.moviesDataList]
+                moviesDataList: [action.payload, ...state.moviesDataList]
             }
         case actionTypes.FORM_SUBMIT:
             return {
                 ...state,
                 moviesDataList: state.moviesDataList.map(movie => {
-                    if (movie.imdbID === action.movieData.imdbID){
-                        return action.movieData
+                    if (movie.imdbID === action.payload.imdbID){
+                        return action.payload
                     }else{ 
                         return movie
                     }
@@ -27,7 +27,7 @@ const fetchMoviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 moviesDataList: state.moviesDataList.filter(movie => {
-                    return movie.imdbID !== action.movieIdToDelete
+                    return movie.imdbID !== action.payload
                 })
             }
         default:
