@@ -1,12 +1,16 @@
 .formLayout{
     margin: auto;
     display: flex;
+    position: fixed;
+    top: 25vh;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 880px;
     height: 500px;
     border: 1px solid black;
+    background: white;
+    z-index: 600;
 
     img{
         height: 500px;

@@ -10,33 +10,23 @@ export const setMovieList = (movieList) => {
 
 export const initMovies = () => {
     let moviesInitialList = [
-            "se7en",
-            "The Silence of the Lambs",
-            "The Game",
-            "The Whole Nine Yards",
-            "The Experiment",
-            "The Girl with the Dragon Tattoo",
-            "Ice Age",
-            "House",
-            "The Green Mile",
-            "American History X",
-            "Breaking Bad",
-            "Limitless",
-            "Braveheart",
-            "The Shawshank Redemption",
-            "Unthinkable",
-            "Pulp Fiction",
-            "The Dictator",
-            "Django Unchained",
-            "Crazy, Stupid, Love.",
-            "Hard Candy"
+            "up",
+            "suits",
+            "casa+de+papel",
+            "friends",
+            "orange+is+the+new+black",
+            "prison+break",
+            "Breaking+Bad",
+            "young+sheldon"
         ]
-    return dispatch => {
+
+        return dispatch => {
         moviesInitialList.forEach(movieTitle => {
             axios.get(`http://www.omdbapi.com/?t=${movieTitle}&apikey=8fb1ba1`)
             .then(res => {
                 dispatch(setMovieList(res.data))           
             })
+            .catch(error => console.log(error))
         })
 
     };

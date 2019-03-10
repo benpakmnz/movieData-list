@@ -6,23 +6,70 @@ import * as actionCreators from '../../Store/actions/index';
 
 import './MoviesContainer.scss';
 import MovieLayout from '../MovieLayout/MovieLayout';
+import EditMovieForm from '../Forms/EditMovieForm';
+import Modal from '../UI/Modal/Modal';
 
 
 class Container extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            formMode: false,
+            selectedMovieId: '',
+            modalMode: false
+        }
+    }
 
     componentDidMount() {
         this.props.setMovieList()
     }
+
+    formEditOpen = (movieId) => {
+        this.setState({
+            formMode: !this.state.formMode,
+            modalMode: !this.state.modalMode,
+            selectedMovieId: movieId
+        })
+    }
+
+    togglePopUp = () => {
+        this.setState({
+            formMode: !this.state.formMode,
+            modalMode: !this.state.modalMode,
+        })
+
+    }
+
+    
+
+    
     
 
     render(){
-        console.log(this.props.moviesList)
         const moviesList = this.props.moviesList
-        .map(movie => <MovieLayout key={movie.imdbID} title={movie.Title} poster={movie.Poster} year={movie.Year} runtime={movie.Runtime} genre={movie.Genre} director={movie.Director}/>);
+        .map(movie => <MovieLayout 
+                    key={movie.imdbID} 
+                    title={movie.Title} 
+                    poster={movie.Poster} 
+                    year={movie.Year} 
+                    runtime={movie.Runtime} 
+                    genre={movie.Genre} 
+                    director={movie.Director}
+                    formOpen={() => this.formEditOpen(movie)}
+                    />);
+        
+        
 
         return(
             <div className="movieList">
+                <MovieLayout/>
                 {moviesList}
+                {this.state.formMode ? 
+                    <EditMovieForm selectedMovieData = {this.state.selectedMovieId} />
+                    : null}
+                <Modal className= "popup"
+                    modalOpen = {this.state.modalMode}
+                    modalClose= {this.togglePopUp}/>
             </div>
         );
     }
