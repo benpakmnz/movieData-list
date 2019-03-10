@@ -1,0 +1,2 @@
+export const FETCHMOVIES = 'FETCHMOVIES';
+export const SET_MOVIELIST = 'SET_MOVIELIST';

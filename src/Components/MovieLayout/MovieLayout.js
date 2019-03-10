@@ -4,39 +4,36 @@ import MovieButtons from './MovieButtons/MovieButtons';
 
 
 class MovieLayout extends Component {
-    constructor(props) {
-        super(props);
-        this.handleMouseHover = this.handleMouseHover.bind(this);
-        this.state = {
-            isHovering: false,
-       }
+    handleMouseHover = this.handleMouseHover.bind(this);
+    state = {
+        isHovering: false,
     }
 
     handleMouseHover() {
         this.setState(this.toggleHoverState);
       }
     
-      toggleHoverState(state) {
+    toggleHoverState(state) {
         return {
           isHovering: !state.isHovering,
         };
       }
+    
+    
   
   render() {
         return(
-            <div className="movieLayout"
-                onMouseEnter={this.handleMouseHover}
-                onMouseLeave={this.handleMouseHover}>
-            
+            <div className="movieLayout" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
                 <div className="posterContainer" 
-                        style={{backgroundImage: "url('https://cdn.europosters.eu/image/750/posters/justice-league-superman-i51000.jpg')"}}>
+                        style={{backgroundImage: `url(${this.props.poster})`}}>
                 </div>
                 <div className="movieData">
-                    <div class="movieTitle">Dog Day Afternoon</div>
-                    <hr/>
-                    <p>Year: 1975 | Runtime: 125 min</p>
-                    <p><span>Genere:</span> Biography, Crime, Drama</p>
-                    <p><span>Director: </span>Sidney Lumet</p>
+                    <div className="movieTitle">{this.props.title}</div>
+                    <p><span>Year:</span> {this.props.year} | <span>Runtime: </span> {this.props.runtime}</p>
+                    <p><span>Genre:</span>
+                    <br/>{this.props.genre}</p>
+                    <p><span>Director: </span>
+                    <br/>{this.props.director}</p>
                 </div>
                 <MovieButtons displayMode={this.state.isHovering ? 'unset': 'unset'}/>
             </div>

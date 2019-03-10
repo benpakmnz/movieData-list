@@ -10,23 +10,23 @@ class EditMovieForm extends Component {
                 <form>
                     <div>
                     <p>* movie Title</p>
-                    <input label = "Title" placeholder="please type movie title" value="Dog Day Afternoon"/>
+                    <input label = "Title" placeholder="please type movie title" />
                     </div>
                     <div>
                     <p>* Year Realsed</p>
-                    <input label = "Year" placeholder="Years in numbers" value="2000"/>
+                    <input label = "Year" placeholder="Years in numbers"/>
                     </div>
                     <div>
                     <p>* Run Time</p>
-                    <input label = "RunTime" placeholder="Runtime in numbers" value="125min"/>
+                    <input label = "RunTime" placeholder="Runtime in numbers"/>
                     </div>
                     <div>
                     <p>* Genere</p>
-                    <input label = "Genere" placeholder="movie genere" value="Biography, Crime, Drama"/>
+                    <input label = "Genere" placeholder="movie genere"/>
                     </div>
                     <div>
                     <p>* Director</p>
-                    <input label = "Director" placeholder="name of the movie director" value="Sidney Lumet"/>
+                    <input label = "Director" placeholder="name of the movie director"/>
                     </div>
                     <div>
                         <button>Submit changes</button>
