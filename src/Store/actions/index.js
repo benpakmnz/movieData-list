@@ -1,4 +1,6 @@
 export {
     initMovies,
-    setMovieList
+    setMovieList,
+    movieFormSubmit,
+    deleteMovie
 } from './fetchMovies';

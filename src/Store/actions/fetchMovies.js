@@ -17,7 +17,8 @@ export const initMovies = () => {
             "orange+is+the+new+black",
             "prison+break",
             "Breaking+Bad",
-            "young+sheldon"
+            "young+sheldon",
+            "unreal"
         ]
 
         return dispatch => {
@@ -31,5 +32,19 @@ export const initMovies = () => {
 
     };
 };
+
+export const movieFormSubmit = (movie) => {
+    return{
+    type: actionTypes.FORM_SUBMIT,
+    movieData: movie
+    }
+};
+
+export const deleteMovie = (movieId) => {
+    return{
+        type: actionTypes.DELETE_MOVIE,
+        movieIdToDelete: movieId
+    }
+}
 
 

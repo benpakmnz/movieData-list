@@ -39,12 +39,7 @@ class Container extends Component {
         })
 
     }
-
     
-
-    
-    
-
     render(){
         const moviesList = this.props.moviesList
         .map(movie => <MovieLayout 
@@ -56,16 +51,18 @@ class Container extends Component {
                     genre={movie.Genre} 
                     director={movie.Director}
                     formOpen={() => this.formEditOpen(movie)}
-                    />);
-        
-        
+                    deleteMovie= {() => this.props.deleteMovie(movie.imdbID)}
+                    />);     
 
         return(
             <div className="movieList">
                 <MovieLayout/>
                 {moviesList}
                 {this.state.formMode ? 
-                    <EditMovieForm selectedMovieData = {this.state.selectedMovieId} />
+                    <EditMovieForm 
+                        selectedMovieData = {this.state.selectedMovieId}
+                        onFormCancel = { this.clearForm } 
+                        handleSubmit = { this.props.onSubmit }/>
                     : null}
                 <Modal className= "popup"
                     modalOpen = {this.state.modalMode}
@@ -84,6 +81,8 @@ class Container extends Component {
     const mapDispatchToProps = dispatch => {
         return{
             setMovieList: () => dispatch(actionCreators.initMovies()),
+            onSubmit: (movieData) => dispatch(actionCreators.movieFormSubmit(movieData)),
+            deleteMovie: (movieId) => dispatch(actionCreators.deleteMovie(movieId))
         }
     };
 

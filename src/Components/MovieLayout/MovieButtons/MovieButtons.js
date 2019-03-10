@@ -4,7 +4,7 @@ import './MovieButtons.scss';
 const MovieButtons = (props) => (
    <div className="movieButtonsContainer" style={{display: props.displayMode}}>
        <button onClick = {props.clickedEdit}>Edit</button>
-       <button>Delete</button>
+       <button onClick = {props.clickedDelete}>Delete</button>
        <p>{props.name}</p>
    </div> 
 )

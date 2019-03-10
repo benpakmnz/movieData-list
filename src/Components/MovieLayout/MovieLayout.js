@@ -35,7 +35,10 @@ class MovieLayout extends Component {
                     <p><span>Director: </span>
                     <br/>{this.props.director}</p>
                 </div>
-                <MovieButtons clickedEdit ={this.props.formOpen}displayMode={this.state.isHovering ? 'unset': 'unset'}/>
+                <MovieButtons 
+                    clickedEdit = {this.props.formOpen}
+                    clickedDelete = {this.props.deleteMovie}
+                    displayMode= {this.state.isHovering ? 'unset': 'unset'}/>
             </div>
             
         );
