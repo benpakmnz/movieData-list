@@ -51,7 +51,7 @@ class EditMovieForm extends Component {
                     Runtime: this.runtime.current.value,
                     Director: this.director.current.value,
                 }
-                let errors = formValidator(movieUpdatedData)
+                let errors = formValidator(movieUpdatedData, this.props.moviesList)
                 this.props.validateForm(errors)
                 if(Object.keys(this.props.errors).length === 0 ) this.onSubmit(event)
                 }

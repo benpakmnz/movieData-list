@@ -1,13 +1,17 @@
 import validator from 'validator';
 
-export const formValidator = (data) =>{
+export const formValidator = (data, currMovieList) =>{
     // let yearCheck = /(\b(19|[2-9][0-9])\d{2})$/;
     let errors = {}
-    
+    let titleValidate = currMovieList.some(movie => movie.Title === data.Title)
+    console.log(currMovieList)
+
     if(validator.isEmpty(data.Title)){
         errors.Title = 'your Movie title is valuable'
     }else if(!validator.isAlpha(validator.blacklist(data.Title, (', .')))) {
         errors.Title = 'Title may contain only letters'
+    }else if(titleValidate){
+        errors.Title = 'hiiii this movie is alreay here....'
     }
 
     if(validator.isEmpty(data.Year)){
@@ -33,5 +37,9 @@ export const formValidator = (data) =>{
     }else if(!validator.isAlpha(validator.blacklist(data.Director, (', .')))) {
         errors.Director = 'Director name may contain letters only'
     }
-    return errors
+
+
+    return errors;
 }
+
+
