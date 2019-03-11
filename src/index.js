@@ -8,10 +8,12 @@ import './index.css';
 import './normalize.css';
 import App from './App';
 import fetchMoviesReducer from './Store/Reducers/fetchMovies'
+import formValidationReducer from './Store/Reducers/formValidation'
 import * as serviceWorker from './serviceWorker';
 
 const rootReducer = combineReducers({
-    moviesList: fetchMoviesReducer
+    moviesList: fetchMoviesReducer,
+    formValidation: formValidationReducer
 })
 
 const logger = store => {

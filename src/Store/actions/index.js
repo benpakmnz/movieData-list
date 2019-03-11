@@ -4,3 +4,8 @@ export {
     movieFormSubmit,
     deleteMovie
 } from './fetchMovies';
+
+export {
+    formValidationErrors,
+    clearFormValidationErrors
+} from './formValidation'

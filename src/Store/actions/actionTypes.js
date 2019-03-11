@@ -1,4 +1,6 @@
 export const FETCHMOVIES = 'FETCHMOVIES';
 export const SET_MOVIELIST = 'SET_MOVIELIST';
 export const FORM_SUBMIT = 'FORM_SUBMIT';
-export const DELETE_MOVIE= 'DELETE_MOVIE'
+export const DELETE_MOVIE= 'DELETE_MOVIE';
+export const FORMERROR ='FORMERROR';
+export const CLEARFORMERROR= 'CLEARFORMERROR';

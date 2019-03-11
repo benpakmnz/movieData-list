@@ -16,7 +16,9 @@ class Container extends Component {
         this.state = {
             formMode: false,
             selectedMovieId: '',
-            modalMode: false
+            modalMode: false,
+            alertMessage: false,
+            // idToDelete: ''
         }
     }
 
@@ -37,8 +39,32 @@ class Container extends Component {
             formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
         })
+    }
+
+    FormCancel = () => {
+        this.setState({
+            formMode: !this.state.formMode,
+            modalMode: !this.state.modalMode,
+        })
+        this.props.clearFormErrors()
+    }
+
+    onSubmitForm =(movieData) => {
+        this.props.onSubmit(movieData)
+        this.togglePopUp()
 
     }
+
+    deleteApprovel = (id) => {
+        this.setState({
+            idToDelete: id,
+            modalMode: !this.modalMode,
+            alertMessage: !this.alertMessage
+        })
+
+    }
+
+    
     
     render(){
         const moviesList = this.props.moviesList
@@ -52,21 +78,28 @@ class Container extends Component {
                     director={movie.Director}
                     formOpen={() => this.formEditOpen(movie)}
                     deleteMovie= {() => this.props.deleteMovie(movie.imdbID)}
+                    // deleteMovie= {() => this.deleteApprovel(movie.imdbID)}
                     />);     
 
         return(
             <div className="movieList">
                 <MovieLayout/>
                 {moviesList}
-                {this.state.formMode ? 
-                    <EditMovieForm 
+                <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
+                        {this.state.formMode ? <EditMovieForm 
                         selectedMovieData = {this.state.selectedMovieId}
-                        onFormCancel = { this.clearForm } 
-                        handleSubmit = { this.props.onSubmit }/>
-                    : null}
-                <Modal className= "popup"
-                    modalOpen = {this.state.modalMode}
-                    modalClose= {this.togglePopUp}/>
+                        onFormCancel = {this.FormCancel} 
+                        handleSubmit = {this.onSubmitForm}/> : null}
+
+                        {/* {this.state.alertMessage ? 
+                        <div>
+                        <p>Are you sure you want to delete this movie ?</p>
+                        <button onClick= {() => this.props.deleteMovie(this.state.idToDelete)}>yep, please delete it for me</button>
+                        <button onClick={this.togglePopUp}>ooooops</button>
+                        </div>
+                        : null} */}
+                </Modal>
+
             </div>
         );
     }
@@ -74,7 +107,8 @@ class Container extends Component {
 
     const mapStateToProps = state => {
         return {
-            moviesList: state.moviesList.moviesDataList  
+            moviesList: state.moviesList.moviesDataList,
+            
         };
     };
 
@@ -82,7 +116,8 @@ class Container extends Component {
         return{
             setMovieList: () => dispatch(actionCreators.initMovies()),
             onSubmit: (movieData) => dispatch(actionCreators.movieFormSubmit(movieData)),
-            deleteMovie: (movieId) => dispatch(actionCreators.deleteMovie(movieId))
+            deleteMovie: (movieId) => dispatch(actionCreators.deleteMovie(movieId)),
+            clearFormErrors: () => dispatch(actionCreators.clearFormValidationErrors())
         }
     };
 
