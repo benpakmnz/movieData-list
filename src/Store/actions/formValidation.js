@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 
 export const formValidationErrors = (payload) => {
     return {
-        type: actionTypes.FORMERROR,
+        type: actionTypes.FORM_ERROR,
         payload
         
     }
@@ -10,7 +10,7 @@ export const formValidationErrors = (payload) => {
 
 export const clearFormValidationErrors = () => {
     return {
-        type: actionTypes.CLEARFORMERROR,
+        type: actionTypes.CLEAR_FORM_ERROR
         
     }
 }

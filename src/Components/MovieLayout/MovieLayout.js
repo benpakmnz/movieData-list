@@ -19,8 +19,6 @@ class MovieLayout extends Component {
         };
       }
     
-    
-  
   render() {
         return(
             <div className="movieLayout" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
@@ -29,6 +27,7 @@ class MovieLayout extends Component {
                 </div>
                 <div className="movieData">
                     <div className="movieTitle">{this.props.title}</div>
+                    <hr/>
                     <p><span>Year:</span> {this.props.year} | <span>Runtime: </span> {this.props.runtime}</p>
                     <p><span>Genre:</span>
                     <br/>{this.props.genre}</p>

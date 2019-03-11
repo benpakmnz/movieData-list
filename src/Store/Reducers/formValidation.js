@@ -13,12 +13,12 @@ const initialState = {
 
 const formValidationReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FORMERROR:
+        case actionTypes.FORM_ERROR:
             return {
                 ...state,
                 errors: action.payload
             }
-        case actionTypes.CLEARFORMERROR:
+        case actionTypes.CLEAR_FORM_ERROR:
             return {
                 ...state,
                 errors: {

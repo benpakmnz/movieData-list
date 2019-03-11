@@ -8,6 +8,7 @@ import './MoviesContainer.scss';
 import MovieLayout from '../MovieLayout/MovieLayout';
 import EditMovieForm from '../Forms/EditMovieForm';
 import Modal from '../UI/Modal/Modal';
+import NewMovieLayout from '../MovieLayout/NewMovieLayout';
 
 
 class Container extends Component {
@@ -64,8 +65,6 @@ class Container extends Component {
 
     }
 
-    
-    
     render(){
         const moviesList = this.props.moviesList
         .map(movie => <MovieLayout 
@@ -79,17 +78,20 @@ class Container extends Component {
                     formOpen={() => this.formEditOpen(movie)}
                     deleteMovie= {() => this.props.deleteMovie(movie.imdbID)}
                     // deleteMovie= {() => this.deleteApprovel(movie.imdbID)}
-                    />);     
+                    />);  
+        
 
         return(
             <div className="movieList">
-                <MovieLayout/>
+                <NewMovieLayout formOpen={this.formEditOpen}/>
                 {moviesList}
                 <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
                         {this.state.formMode ? <EditMovieForm 
                         selectedMovieData = {this.state.selectedMovieId}
                         onFormCancel = {this.FormCancel} 
-                        handleSubmit = {this.onSubmitForm}/> : null}
+                        handleEditMovieSubmit = {this.props.onSubmitEditMovie}
+                        handleAddMovieSubmit = {this.props.onSubmitNewMovie}
+                        /> : null}
 
                         {/* {this.state.alertMessage ? 
                         <div>
@@ -115,7 +117,8 @@ class Container extends Component {
     const mapDispatchToProps = dispatch => {
         return{
             setMovieList: () => dispatch(actionCreators.initMovies()),
-            onSubmit: (movieData) => dispatch(actionCreators.movieFormSubmit(movieData)),
+            onSubmitEditMovie: (movieData) => dispatch(actionCreators.editMovieSubmit(movieData)),
+            onSubmitNewMovie: (movieData) => dispatch(actionCreators.addMovieSubmit(movieData)),
             deleteMovie: (movieId) => dispatch(actionCreators.deleteMovie(movieId)),
             clearFormErrors: () => dispatch(actionCreators.clearFormValidationErrors())
         }

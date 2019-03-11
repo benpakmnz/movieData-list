@@ -6,6 +6,7 @@
     flex-direction: column; 
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .posterContainer{
@@ -23,9 +24,11 @@
 
 .movieTitle{
     font-size: 28px;
-    // height: 60px;
     color: #0f3b54;
     font-weight: bold;
+}
+.newMovieTitle{
+    text-align: center;
 }
 
 .movieData{

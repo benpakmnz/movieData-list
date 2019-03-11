@@ -26,8 +26,17 @@ class EditMovieForm extends Component {
             Poster: this.props.selectedMovieData.Poster
             
         }
-        this.props.handleSubmit(movieData)
+        this.handleSubmitType(movieData)
         this.props.onFormCancel() 
+    }
+
+    handleSubmitType = (movieData) => {
+        console.log(this.props.selectedMovieData)
+        if(this.props.selectedMovieData.key){
+            this.props.handleEditMovieSubmit(movieData)
+        }else{
+            this.props.handleAddMovieSubmit(movieData)
+        }
     }
 
     formValidation = (event, validate) => {

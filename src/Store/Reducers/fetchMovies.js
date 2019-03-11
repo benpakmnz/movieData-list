@@ -1,18 +1,18 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    moviesDataList : []
+    moviesDataList : [],
 };
 
 
 const fetchMoviesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_MOVIELIST:
+        case actionTypes.SET_MOVIE_LIST:
             return {
                 ...state,
                 moviesDataList: [action.payload, ...state.moviesDataList]
             }
-        case actionTypes.FORM_SUBMIT:
+        case actionTypes.EDIT_MOVIE_SUBMIT:
             return {
                 ...state,
                 moviesDataList: state.moviesDataList.map(movie => {
@@ -23,11 +23,17 @@ const fetchMoviesReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case actionTypes.ADD_MOVIE_SUBMIT:
+            return {
+                ...state,
+                moviesDataList: [action.payload, ...state.moviesDataList]
+
+            }
         case actionTypes.DELETE_MOVIE:
             return {
                 ...state,
                 moviesDataList: state.moviesDataList.filter(movie => {
-                    return movie.imdbID !== action.payload
+                return movie.imdbID !== action.payload
                 })
             }
         default:

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const setMovieList = (payload) => {
     return {
-        type: actionTypes.SET_MOVIELIST,
+        type: actionTypes.SET_MOVIE_LIST,
         payload
     }
 }
@@ -33,12 +33,20 @@ export const initMovies = () => {
     };
 };
 
-export const movieFormSubmit = (payload) => {
+export const editMovieSubmit = (payload) => {
     return{
-    type: actionTypes.FORM_SUBMIT,
+    type: actionTypes.EDIT_MOVIE_SUBMIT,
     payload
     }
 };
+
+
+export const addMovieSubmit = (payload) => {
+    return{
+        type: actionTypes.ADD_MOVIE_SUBMIT,
+        payload
+    }
+}
 
 export const deleteMovie = (payload) => {
     return{
