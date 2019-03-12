@@ -23,7 +23,7 @@ export const initMovies = () => {
 
         return dispatch => {
         moviesInitialList.forEach(movieTitle => {
-            axios.get(`http://www.omdbapi.com/?t=${movieTitle}&apikey=8fb1ba1`)
+            axios.get(`https://www.omdbapi.com/?t=${movieTitle}&apikey=8fb1ba1`)
             .then(res => {
                 dispatch(setMovieList(res.data))           
             })
