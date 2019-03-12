@@ -16,7 +16,7 @@ class Container extends Component {
         super(props)
         this.state = {
             formMode: false,
-            selectedMovieId: '',
+            selectedMovie: {},
             modalMode: false,
             alertMessage: false,
             // idToDelete: ''
@@ -31,8 +31,10 @@ class Container extends Component {
         this.setState({
             formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
-            selectedMovieId: movieId
+            selectedMovie: movieId
         })
+        console.log('selectedMovie: '+ this.state.selectedMovie)
+        console.log('movieId: '+ movieId)
     }
 
     togglePopUp = () => {
@@ -65,10 +67,8 @@ class Container extends Component {
 
     }
 
-    
-
     render(){
-        console.log(this.props.moviesList)
+        
         const moviesList = this.props.moviesList
         .map(movie => <MovieLayout 
                     
@@ -91,7 +91,7 @@ class Container extends Component {
                 {moviesList}
                 <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
                         {this.state.formMode ? <EditMovieForm 
-                        selectedMovieData = {this.state.selectedMovieId}
+                        selectedMovieData = {this.state.selectedMovie}
                         onFormCancel = {this.FormCancel} 
                         // handleEditMovieSubmit = {this.props.onSubmitEditMovie}
                         // handleAddMovieSubmit = {this.props.onSubmitNewMovie}

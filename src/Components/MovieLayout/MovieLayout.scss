@@ -34,16 +34,30 @@
 .movieData{
     text-align: left;
     min-height: 204px;
-    font-size: 16px;
+    font-size: 18px;
     width: 100%;
 }
 
 p {
     margin: 10px 0;
     span{
-        font-weight: bold;  
+        font-weight: bold;
+        color:#0f3b54;  
     }
+
 } 
+
+.dataIcon{
+    color:#0f3b54; 
+    margin:0 5px;
+    
+
+}
+
+.addMovieIcon{
+    font-size: 120px;
+    color:#0f3b54;
+}
 
 @media(max-width: 600px) {
     
