@@ -26,18 +26,16 @@ class EditMovieForm extends Component {
             Poster: this.props.selectedMovieData.Poster
             
         }
-        this.handleSubmitType(movieData)
+
+        if(this.props.selectedMovieData.imdbID){
+            this.props.onSubmitEditMovie(movieData)
+        }else{
+            this.props.onSubmitNewMovie(movieData)
+        }
+    
         this.props.onFormCancel() 
     }
 
-    handleSubmitType = (movieData) => {
-        console.log(this.props.selectedMovieData)
-        if(this.props.selectedMovieData.key){
-            this.props.handleEditMovieSubmit(movieData)
-        }else{
-            this.props.handleAddMovieSubmit(movieData)
-        }
-    }
 
     formValidation = (event, validate) => {
         event.preventDefault()
@@ -135,8 +133,10 @@ const mapStateToProps = state => {
 
  const mapDispatchToProps = dispatch => {
      return {
-         validateForm: (data) => dispatch(actionCreators.formValidationErrors(data))
-     }
+         validateForm: (data) => dispatch(actionCreators.formValidationErrors(data)),
+         onSubmitEditMovie: (movieData) => dispatch(actionCreators.editMovieSubmit(movieData)),
+         onSubmitNewMovie: (movieData) => dispatch(actionCreators.addMovieSubmit(movieData)),
+        }
  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditMovieForm);

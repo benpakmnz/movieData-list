@@ -65,10 +65,14 @@ class Container extends Component {
 
     }
 
+    
+
     render(){
+        console.log(this.props.moviesList)
         const moviesList = this.props.moviesList
         .map(movie => <MovieLayout 
-                    key={movie.imdbID} 
+                    
+                    key={movie.imdbID ? movie.imdbID : movie.Title} 
                     title={movie.Title} 
                     poster={movie.Poster} 
                     year={movie.Year} 
@@ -89,8 +93,8 @@ class Container extends Component {
                         {this.state.formMode ? <EditMovieForm 
                         selectedMovieData = {this.state.selectedMovieId}
                         onFormCancel = {this.FormCancel} 
-                        handleEditMovieSubmit = {this.props.onSubmitEditMovie}
-                        handleAddMovieSubmit = {this.props.onSubmitNewMovie}
+                        // handleEditMovieSubmit = {this.props.onSubmitEditMovie}
+                        // handleAddMovieSubmit = {this.props.onSubmitNewMovie}
                         /> : null}
 
                         {/* {this.state.alertMessage ? 
@@ -117,8 +121,8 @@ class Container extends Component {
     const mapDispatchToProps = dispatch => {
         return{
             setMovieList: () => dispatch(actionCreators.initMovies()),
-            onSubmitEditMovie: (movieData) => dispatch(actionCreators.editMovieSubmit(movieData)),
-            onSubmitNewMovie: (movieData) => dispatch(actionCreators.addMovieSubmit(movieData)),
+            // onSubmitEditMovie: (movieData) => dispatch(actionCreators.editMovieSubmit(movieData)),
+            // onSubmitNewMovie: (movieData) => dispatch(actionCreators.addMovieSubmit(movieData)),
             deleteMovie: (movieId) => dispatch(actionCreators.deleteMovie(movieId)),
             clearFormErrors: () => dispatch(actionCreators.clearFormValidationErrors())
         }
