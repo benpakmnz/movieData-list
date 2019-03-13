@@ -3,9 +3,6 @@ import './MovieLayout.scss';
 import MovieButtons from './MovieButtons/MovieButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
-
 class MovieLayout extends Component {
     handleMouseHover = this.handleMouseHover.bind(this);
     state = {

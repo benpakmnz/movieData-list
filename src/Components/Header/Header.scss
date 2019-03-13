@@ -1,0 +1,16 @@
+header{
+    height: 21vh;
+    width: 100vw;
+    background-color: #0f3b54;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    z-index: 600;
+    top: 0;
+    
+
+    img{
+        width: 320px;
+    }
+}
