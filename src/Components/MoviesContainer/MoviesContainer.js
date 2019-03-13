@@ -13,7 +13,7 @@ class Container extends Component {
     constructor(props){
         super(props)
         this.state = {
-            formMode: false,
+            // formMode: false,
             selectedMovie: {},
             modalMode: false,
             modalType: '',
@@ -23,6 +23,8 @@ class Container extends Component {
 
     componentDidMount() {
         this.props.setMovieList()
+        // this.setState({modalType: ''})
+        
     }
 
     formEditOpen = (movieId) => {
@@ -34,19 +36,22 @@ class Container extends Component {
         })
         console.log('selectedMovie: '+ this.state.selectedMovie)
         console.log('movieId: '+ movieId)
+        
     }
 
     togglePopUp = () => {
         this.setState({
             // formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
+
             // modalType: 'form'
         })
+        this.props.clearFormErrors()
     }
 
     FormCancel = () => {
         this.setState({
-            formMode: !this.state.formMode,
+            // formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
             modalType: ''
         })
@@ -56,6 +61,7 @@ class Container extends Component {
     onSubmitForm = (movieData) => {
         this.props.onSubmit(movieData)
         this.togglePopUp()
+        this.props.clearFormErrors()
     }
 
     deleteApprovel = (movie) => {
@@ -64,6 +70,7 @@ class Container extends Component {
             movieToDelete: movie,
             modalType: 'delete'
         })
+        
     }
 
     deleteApproved = () => {
@@ -95,7 +102,8 @@ class Container extends Component {
                 {moviesList}
                 <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
 
-                        {this.state.modalType === 'form' ? <EditMovieForm selectedMovieData = {this.state.selectedMovie} onFormCancel = {this.FormCancel}/> : null}
+                        {this.state.modalType === 'form' ? <EditMovieForm selectedMovieData = {this.state.selectedMovie} 
+                        onFormCancel = {this.FormCancel}/> : null}
                         {this.state.modalType === 'delete' ? 
                         <div>
                             <p>Are you sure you want to delete {this.state.movieToDelete.Title} ?</p>

@@ -1,32 +1,21 @@
 import validator from 'validator';
 
 
-export const formValidator = (data, currMovieList) =>{
+export const titleCheck = (data, currMovieList) => {
+    if(currMovieList.some(movie => movie.Title === data.Title)){
+          return true
+    }
+}
 
+export const formValidator = (data, currMovieList) =>{
     let yearCheck = /(\b(19|[2-9][0-9])\d{2})$/;
     let errors = {}
-    let titleValidate = currMovieList.find(movie => movie.imdbId === data.imdbId)
-    let titleError = null
-    console.log('titleValidate: ' + JSON.stringify(titleValidate))
-    console.log('title: ' + titleValidate.Title.toUpperCase().split())
-    console.log('dataTitle: ' + data.Title)
-    if(titleValidate.Title !== data.Title){
-        if(currMovieList.some(movie => movie.Title === data.Title)){
-            titleError = true
-
-        }
-        
-    }
-    console.log('titleError: ' + titleError)
-
-    // console.log('validatorcurrMovieList: ' + JSON.stringify(currMovieList))
-    console.log('validatordata: ' + JSON.stringify(data))
 
     if(validator.isEmpty(data.Title)){
         errors.Title = 'your Movie title is valuable'
     }else if(!validator.isAlpha(validator.blacklist(data.Title, (', .')))) {
         errors.Title = 'Title may contain only letters'
-    }else if(titleError){
+    }else if(titleCheck(data, currMovieList)===true){
         errors.Title = 'hiiii this movie is alreay here....'
     }
 

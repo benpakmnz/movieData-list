@@ -51,13 +51,12 @@ class EditMovieForm extends Component {
                     imdbID: this.props.selectedMovieData.imdbID
                 }
                 let errors = formValidator(movieUpdatedData, this.props.moviesList)
-                // console.log('movieUpdatedData: ' + JSON.stringify(movieUpdatedData))
-                // console.log('moviesList ' + JSON.stringify(this.props.moviesList))
-
                 this.props.validateForm(errors)
-                if(Object.keys(this.props.errors).length === 0 ) this.onSubmit(event)
+                if(Object.keys(this.props.errors).length === 0){
+                     this.onSubmit(event)
                 }
             }
+        }
         
 
 
