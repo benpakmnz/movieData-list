@@ -8,10 +8,10 @@ const initialState = {
 const fetchMoviesReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_MOVIE_LIST:
-            return {
+            return ({
                 ...state,
                 moviesDataList: [action.payload, ...state.moviesDataList]
-            }
+            })
         case actionTypes.EDIT_MOVIE_SUBMIT:
             return {
                 ...state,

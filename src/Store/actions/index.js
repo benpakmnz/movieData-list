@@ -4,6 +4,7 @@ export {
     editMovieSubmit,
     addMovieSubmit,
     deleteMovie,
+    titleFormat
 } from './fetchMovies';
 
 export {

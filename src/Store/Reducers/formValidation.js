@@ -21,13 +21,7 @@ const formValidationReducer = (state = initialState, action) => {
         case actionTypes.CLEAR_FORM_ERROR:
             return {
                 ...state,
-                errors: {
-                    Title: '',
-                    Year: '',
-                    Genre: '',
-                    Runtime: '',
-                    Director: '',
-                }
+                errors: {}
             }
         default:
         return state;

@@ -2,9 +2,18 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
 export const setMovieList = (payload) => {
+    const titleHandler = titleFormat(payload.Title)  
     return {
         type: actionTypes.SET_MOVIE_LIST,
-        payload
+        payload: {
+            Title: titleHandler,
+            Poster: payload.Poster,
+            Year: payload.Year,
+            Runtime: payload.Runtime,
+            Genre: payload.Genre,
+            Director: payload.Director,
+            imdbID: payload.imdbID
+        } 
     }
 }
 
@@ -19,6 +28,7 @@ export const initMovies = () => {
             "Breaking+Bad",
             "young+sheldon",
             "unreal"
+            
         ]
 
         return dispatch => {
@@ -33,18 +43,49 @@ export const initMovies = () => {
     };
 };
 
+export const titleFormat = (title) => {
+        let regex = /([a-z]|\s)/i
+        let formattedTitle = title.toLowerCase()
+                                .split('')
+                                .filter(char => regex.test(char))
+                                .join('')
+                                .split(' ')
+                                .map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
+        return formattedTitle;
+    
+}
+
+
 export const editMovieSubmit = (payload) => {
+    const titleHandler = titleFormat(payload.Title)
     return{
     type: actionTypes.EDIT_MOVIE_SUBMIT,
-    payload
+    payload: {
+        Title: titleHandler,
+        Poster: payload.Poster,
+        Year: payload.Year,
+        Runtime: payload.Runtime,
+        Genre: payload.Genre,
+        Director: payload.Director,
+        imdbID: payload.imdbID
+    }
     }
 };
 
 
 export const addMovieSubmit = (payload) => {
+    const titleHandler = titleFormat(payload.Title)
     return{
         type: actionTypes.ADD_MOVIE_SUBMIT,
-        payload
+        payload: {
+            Title: titleHandler,
+            Poster: payload.Poster,
+            Year: payload.Year,
+            Runtime: payload.Runtime,
+            Genre: payload.Genre,
+            Director: payload.Director,
+            imdbID: payload.imdbID
+        }
     }
 }
 

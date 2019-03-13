@@ -140,6 +140,7 @@ const mapStateToProps = state => {
          validateForm: (data) => dispatch(actionCreators.formValidationErrors(data)),
          onSubmitEditMovie: (movieData) => dispatch(actionCreators.editMovieSubmit(movieData)),
          onSubmitNewMovie: (movieData) => dispatch(actionCreators.addMovieSubmit(movieData)),
+         
         }
  }
 
