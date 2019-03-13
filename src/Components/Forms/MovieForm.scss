@@ -88,10 +88,13 @@
 }
 
 
-@media (min-width: 881px) {
+@media (min-width: 881px) and (max-width: 1024px){
     .formLayout{
-        width: 90vw;
+        width: 65vw;
         height: 70vh;
+    }
+    .formLayout .formPoster{
+        display:none;
     }
 }
 
@@ -101,19 +104,21 @@
     }
 }
 
-@media (min-width: 711px) and (max-width: 880x) {
+@media (min-width: 320px) and (max-width: 880px) {
     .formLayout{
-        width: 60vw;
+        width: 80vw;
         height: 70vh;
     }
-
+    .formLayout .formPoster{
+        display:none;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 710px) {
-    .formLayout{
-        width: 80vw;
-        height: 60vh;
-    }
+    // .formLayout{
+    //     width: 80vw;
+    //     height: 60vh;
+    // }
 
     .formLayout{
          input{
@@ -124,9 +129,8 @@
         border-bottom: 1px solid black;
         font-size: 20px;
         padding: 0 10px;
-        }   
+        } 
+          
     }
-
-
-
+    
 }
