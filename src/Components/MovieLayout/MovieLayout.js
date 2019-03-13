@@ -4,6 +4,8 @@ import MovieButtons from './MovieButtons/MovieButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
+
+
 class MovieLayout extends Component {
     handleMouseHover = this.handleMouseHover.bind(this);
     state = {
@@ -23,8 +25,8 @@ class MovieLayout extends Component {
     render() {
         return(
             <div className="movieLayout" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                <div className="posterContainer" 
-                        style={{backgroundImage: `url(${this.props.poster})`}}>
+                <div className="posterContainer" style={{backgroundImage: `url(${this.props.poster})`}}>
+                {!this.props.poster ? <div className="noPoster"><FontAwesomeIcon className="imageIcon" icon="image"/></div> : null}
                 </div>
                 <div className="movieData">
                     <div className="movieTitle">{this.props.title}</div>

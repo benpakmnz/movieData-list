@@ -7,7 +7,8 @@ import {
     faTrash,
     faCalendar,
     faTimes,
-    faStopwatch
+    faStopwatch,
+    faImage
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,6 +20,7 @@ library.add(
     faTrash,
     faCalendar,
     faTimes,
-    faStopwatch
+    faStopwatch,
+    faImage
     
 );

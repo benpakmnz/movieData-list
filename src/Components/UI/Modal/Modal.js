@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import './Modal.scss'
+import React, { Fragment } from 'react';
+import './Modal.scss';
 import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = props => {

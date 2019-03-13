@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './MovieForm.scss';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../Store/actions/index';
-import { formValidator } from '../../validations'
+import { formValidator } from '../../validations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../MovieLayout/MovieLayout.scss';
 
 class EditMovieForm extends Component {
     constructor(props) {
@@ -63,7 +65,11 @@ class EditMovieForm extends Component {
     render(){
         return (
             <div className = "formLayout">
-                <img src={this.props.selectedMovieData.Poster} alt={this.props.selectedMovieData.Title}/>
+                {this.props.selectedMovieData.Poster ? 
+                <img src={this.props.selectedMovieData.Poster} alt={this.props.selectedMovieData.Title}/> : 
+                    <div className="noPoster">
+                    <FontAwesomeIcon className="imageIcon" icon="image"/>
+                    </div>} 
                 <form>
                     <div>
                         <p>* movie Title: 
@@ -115,11 +121,12 @@ class EditMovieForm extends Component {
                             defaultValue = {this.props.selectedMovieData.Director} 
                             ref={this.director} 
                             placeholder="name of the movie director"/>
+                    <div class="formButtons">
+                        <button onClick = {event => this.formValidation(event, true)}><FontAwesomeIcon icon="check"></FontAwesomeIcon> Submit changes</button>
+                        <p className ="cancelButton" onClick = {this.props.onFormCancel}>cancel</p>
                     </div>
-                    <div>
-                        <button onClick = {event => this.formValidation(event, true)}>Submit changes</button>
-                        <button onClick = {this.props.onFormCancel}>cancel</button>
                     </div>
+
                 </form>
             </div>
         );

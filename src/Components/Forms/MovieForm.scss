@@ -7,7 +7,7 @@
 
 
     img{
-        height: 500px;
+        height: 100%;
     }
 
     form{
@@ -42,5 +42,37 @@
     input:focus, textarea:focus, select:focus {
     outline: none;
     background: #0f3b5424;
+    }
+
+    button{
+        padding: 10px 15px;
+        background-color: #0f3b54;
+        border-radius: 40px;
+        color: white;
+        border-style: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #071d2a;
+    }
+
+    .cancelButton {
+        color: #0f3b54;
+        cursor: pointer;
+        padding-bottom: 1px;
+        text-decoration: underline;
+    }
+
+    .cancelButton:hover {
+        color: #071d2a;
+    }
+
+    .formButtons{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+        
     }
 }
