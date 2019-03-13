@@ -9,6 +9,17 @@
     cursor: pointer;
 }
 
+.addMovieLayout{
+    display: flex;
+    margin: 40px;
+    width: 330px;
+    height: 580px;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 .posterContainer{
     width: 330px;
     height: 330px;
@@ -23,13 +34,16 @@
     
     .noPoster{
         border-radius: 50%;
-
     }
+}
+
+.posterContainer:hover{
+    background-color: #0f3b5412;
 }
 
 .noPoster{
     background-color: #0f3b54;
-    width: 100%;
+    width: 550px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -44,8 +58,15 @@
     
 }
 .newMovieTitle{
+    font-size: 28px;
+    color: #0f3b54;
+    font-weight: bold;
     text-align: center;
     min-height: 260px;
+}
+
+.NewMovieTitleMobile{
+    display: none;
 }
 
 .movieData{
@@ -53,12 +74,12 @@
     min-height: 204px;
     font-size: 18px;
     width: 100%;
-
-    .imageIcon{
-        font-size: 160px;
-        color: white;
-    } 
 }
+
+.imageIcons{
+    font-size: 140px;
+    color: white;
+} 
 
 p {
     margin: 10px 0;
@@ -83,13 +104,12 @@ p {
 
 
 
-@media(max-width: 600px) {
+@media (min-width: 320px) and (max-width: 1024px) { 
     .addMovieLayout{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: sticky;
-        top: 83vh;
+        justify-content: unset;
+        margin: unset;
+        position: fixed;
+        top: 84vh;
         background-color: #0f3b54;
         z-index: 600;
         border-radius: 200px;
@@ -103,14 +123,25 @@ p {
             font-size: 55px;
             color:white;
         }
-        .newMovieTitle{
+        .NewMovieTitleMobile{
             text-align: center;
             color: white;
             font-size: 20px;
+            display: unset;
+        }
+
+        .newMovieTitle{
+            display: none;
+        }
+        .posterContainer{
+            border: unset;
+            height: unset;
+            margin: unset;
         }
     }
 
-    
+
+
 }
 
 

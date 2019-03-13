@@ -4,9 +4,9 @@
     width: 100%;
 }
 
-.editMovieButton, .removeMovieButton{
-    padding: 10px 3px 13px 0;
-    width: 158px;
+.blueMovieButton, .redMovieButton{
+    padding: 10px 30px 15px 30px;
+    min-width: 158px;
     font-size: 20px;
     border-radius: 40px;
     color: white;
@@ -18,27 +18,27 @@
     }
 }
 
-.removeMovieButton{
+.redMovieButton{
     background-color: #8c0e01;
 }
 
-.editMovieButton{
+.blueMovieButton{
     background-color: #0f3b54;
 }
 
-.removeMovieButton:hover{
+.redMovieButton:hover{
     background-color: #450600;
 }
 
-.editMovieButton:hover{
+.blueMovieButton:hover{
     background-color: #071d2a;
 }
 
-@media(max-width: 999px){
+@media (min-width: 320px) and (max-width: 1024px) {
     .movieButtonsContainer{
         position: unset;
         top: auto;
-        display: block;
+        display: flex;
     }
 }
 

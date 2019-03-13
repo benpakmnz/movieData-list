@@ -6,8 +6,13 @@
     height: 500px;
 
 
-    img{
+    .formPoster{
         height: 100%;
+        width: 600px;
+        background-color: #0f3b54;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     form{
@@ -33,6 +38,7 @@
         font-size: 25px;
         padding: 0 10px;
     }
+
     span{
         color:#cc0e0e;
         font-weight: 500;
@@ -75,4 +81,52 @@
         margin-top: 20px;
         
     }
+    .imageIcons{
+        font-size: 150px;
+        color: white;
+    }
+}
+
+
+@media (min-width: 881px) {
+    .formLayout{
+        width: 90vw;
+        height: 70vh;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 880px) {
+    .formLayout .formPoster{
+        display:none;
+    }
+}
+
+@media (min-width: 711px) and (max-width: 880x) {
+    .formLayout{
+        width: 60vw;
+        height: 70vh;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 710px) {
+    .formLayout{
+        width: 80vw;
+        height: 60vh;
+    }
+
+    .formLayout{
+         input{
+        display: block;
+        width: 250px;
+        height: 35px;
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 20px;
+        padding: 0 10px;
+        }   
+    }
+
+
+
 }

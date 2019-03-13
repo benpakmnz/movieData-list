@@ -2,7 +2,7 @@ import validator from 'validator';
 
 
 export const titleCheck = (data, currMovieList) => {
-    if(currMovieList.some(movie => movie.Title === data.Title)){
+    if(currMovieList.find(movie => movie.Title === data.Title)){
           return true
     }
 }

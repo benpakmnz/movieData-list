@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../Store/actions/index';
 
 import './MoviesContainer.scss';
+import '../MovieLayout/MovieButtons/MovieButtons.scss';
 import MovieLayout from '../MovieLayout/MovieLayout';
 import EditMovieForm from '../Forms/EditMovieForm';
 import Modal from '../UI/Modal/Modal';
@@ -105,10 +106,14 @@ class Container extends Component {
                         {this.state.modalType === 'form' ? <EditMovieForm selectedMovieData = {this.state.selectedMovie} 
                         onFormCancel = {this.FormCancel}/> : null}
                         {this.state.modalType === 'delete' ? 
-                        <div>
-                            <p>Are you sure you want to delete {this.state.movieToDelete.Title} ?</p>
-                            <button onClick= {this.deleteApproved}>yep, please delete it for me</button>
-                            <button onClick={this.togglePopUp}>ooooops</button>
+                        <div class="deleteApprovalMessage">
+                            <p>Are you sure you want to remove the title</p>
+                            <h3 style={{margin: '0px 0px 25px 0px'}}> {this.state.movieToDelete.Title} ?</h3>
+                            <div className="popUpFooter">
+                            <button className="blueMovieButton" onClick= {this.deleteApproved}>yep, please delete it for me</button>
+                            <button className="redMovieButton"onClick={this.togglePopUp}>ooooops</button>
+                            </div>
+
                         </div>
                         : null}
                 </Modal>

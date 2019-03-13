@@ -65,10 +65,11 @@ class EditMovieForm extends Component {
     render(){
         return (
             <div className = "formLayout">
+                
                 {this.props.selectedMovieData.Poster ? 
-                <img src={this.props.selectedMovieData.Poster} alt={this.props.selectedMovieData.Title}/> : 
-                    <div className="noPoster">
-                    <FontAwesomeIcon className="imageIcon" icon="image"/>
+                <img className="formPoster" src={this.props.selectedMovieData.Poster} alt={this.props.selectedMovieData.Title}/> : 
+                    <div className="formPoster">
+                    <FontAwesomeIcon className="imageIcons" icon="image"/>
                     </div>} 
                 <form>
                     <div>

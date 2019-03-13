@@ -11,6 +11,15 @@ header{
     
 
     img{
-        width: 320px;
+        min-width: 330px;
+        max-width: 650px;
+        width: 30%;
     }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) { 
+    header{
+        height: 12vh;
+    }
+
 }
