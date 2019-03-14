@@ -1,5 +1,6 @@
 import React from 'react';
 import './MovieButtons.scss';
+import '../MovieLayout.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const MovieButtons = (props) => (
@@ -14,5 +15,6 @@ const MovieButtons = (props) => (
                 </button>
    </div> 
 )
+
 
 export default MovieButtons;
