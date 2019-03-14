@@ -9,6 +9,10 @@ import '../MovieLayout/MovieLayout.scss';
 class EditMovieForm extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            stateEerrors: {}
+        }
+
         this.title = React.createRef()
         this.year = React.createRef()
         this.genre = React.createRef()
@@ -52,14 +56,19 @@ class EditMovieForm extends Component {
                     Director: this.director.current.value,
                     imdbID: this.props.selectedMovieData.imdbID
                 }
+                console.log('movieUpdatedData: '+ JSON.stringify(movieUpdatedData))
+
                 let errors = formValidator(movieUpdatedData, this.props.moviesList)
+                this.setState({
+                    stateEerrors: errors
+                })
+                console.log('stateErrors: ' + JSON.stringify(this.state.errors))
                 this.props.validateForm(errors)
-                if(Object.keys(this.props.errors).length === 0){
+                if(Object.keys(errors).length === 0){
                      this.onSubmit(event)
                 }
             }
-        }
-        
+        }  
 
 
     render(){
@@ -122,9 +131,12 @@ class EditMovieForm extends Component {
                             defaultValue = {this.props.selectedMovieData.Director} 
                             ref={this.director} 
                             placeholder="name of the movie director"/>
-                    <div class="formButtons">
-                        <button onClick = {event => this.formValidation(event, true)}><FontAwesomeIcon icon="check"></FontAwesomeIcon> Submit changes</button>
-                        <p className ="cancelButton" onClick = {this.props.onFormCancel}>cancel</p>
+                    <div className="formButtons">
+                        <button onClick = {event => this.formValidation(event, true)}>
+                        <FontAwesomeIcon icon="check"></FontAwesomeIcon> Submit changes
+                        </button>
+                        <p className ="cancelButton" 
+                           onClick = {this.props.onFormCancel}>cancel</p>
                     </div>
                     </div>
 

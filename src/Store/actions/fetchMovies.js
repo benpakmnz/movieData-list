@@ -43,17 +43,20 @@ export const initMovies = () => {
     };
 };
 
-export const titleFormat = (title) => {
-        let regex = /([a-z]|\s)/i
-        let formattedTitle = title.toLowerCase()
-                                .split('')
-                                .filter(char => regex.test(char))
-                                .join('')
-                                .split(' ')
-                                .map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
-        return formattedTitle;
-    
-}
+    export const titleFormat = (title) => {
+        if (!title) {
+            return;
+        } else {
+            let regex = /([a-z]|\s)/i
+            let formattedTitle = title.toLowerCase()
+                                    .split('')
+                                    .filter(char => regex.test(char))
+                                    .join('')
+                                    .split(' ')
+                                    .map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
+            return formattedTitle;
+        }
+    }
 
 
 export const editMovieSubmit = (payload) => {

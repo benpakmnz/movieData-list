@@ -1,11 +1,40 @@
 import validator from 'validator';
 
 
+// export const titleCheck = (data, currMovieList) => {
+//     let titleDuplicate = currMovieList.find(movie => movie.Title === data.Title)
+//         console.log(titleDuplicate)
+//         if(data.imdbID){
+//             if(titleDuplicate.imdbID !== data.imdbID){
+//                 return true
+//              }
+//         }else{ 
+//             return false
+//         }
+// }
+
+
 export const titleCheck = (data, currMovieList) => {
-    if(currMovieList.find(movie => movie.Title === data.Title)){
-          return true
-    }
+      let titleDuplicate = currMovieList.find(movie => movie.imdbID === data.imdbID)
+        console.log(titleDuplicate)
+            if(titleDuplicate !== undefined){
+                if(titleDuplicate.Title === data.Title){
+                    console.log('edit')
+                    return true
+                }else{
+                    return false
+                }
+             }else if(currMovieList.some(movie => movie.Title === data.Title)){
+                return true
+             }
+                console.log(currMovieList)
+                console.log(data.Title)
+                console.log('new')
+               
+                  
+             
 }
+
 
 export const formValidator = (data, currMovieList) =>{
     let yearCheck = /(\b(19|[2-9][0-9])\d{2})$/;
@@ -15,7 +44,7 @@ export const formValidator = (data, currMovieList) =>{
         errors.Title = 'your Movie title is valuable'
     }else if(!validator.isAlpha(validator.blacklist(data.Title, (', .')))) {
         errors.Title = 'Title may contain only letters'
-    }else if(titleCheck(data, currMovieList)===true){
+    }else if(titleCheck(data, currMovieList)){
         errors.Title = 'hiiii this movie is alreay here....'
     }
 

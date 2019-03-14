@@ -14,45 +14,43 @@ class Container extends Component {
     constructor(props){
         super(props)
         this.state = {
-            // formMode: false,
+            formMode: false,
             selectedMovie: {},
             modalMode: false,
             modalType: '',
+            formType: '',
             movieToDelete: {}
         }
     }
 
     componentDidMount() {
         this.props.setMovieList()
-        // this.setState({modalType: ''})
-        
+        console.log('componentDidMount: '+ JSON.stringify(this.state))
     }
 
-    formEditOpen = (movieId) => {
+    formEditOpen = (movie, selectedFormType) => {
         this.setState({
-            // formMode: !this.state.formMode,
+            formMode: !this.state.formMode,
+            selectedMovie: movie,
             modalMode: !this.state.modalMode,
-            selectedMovie: movieId,
-            modalType: 'form'
+            modalType: 'form',
+            formType: selectedFormType,
         })
-        console.log('selectedMovie: '+ this.state.selectedMovie)
-        console.log('movieId: '+ movieId)
-        
+        console.log(this.state)
     }
-
+    
     togglePopUp = () => {
         this.setState({
-            // formMode: !this.state.formMode,
+            formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
-
-            // modalType: 'form'
+            modalType: ''
         })
         this.props.clearFormErrors()
     }
 
     FormCancel = () => {
         this.setState({
-            // formMode: !this.state.formMode,
+            formMode: !this.state.formMode,
             modalMode: !this.state.modalMode,
             modalType: ''
         })
@@ -70,8 +68,7 @@ class Container extends Component {
             modalMode: !this.state.modalMode,
             movieToDelete: movie,
             modalType: 'delete'
-        })
-        
+        }) 
     }
 
     deleteApproved = () => {
@@ -81,9 +78,10 @@ class Container extends Component {
         });
         this.props.deleteMovie(this.state.movieToDelete.imdbID)
     }
+
           
     render(){
-        console.log(this.props.moviesList)
+        // console.log(this.props.moviesList)
         const moviesList = this.props.moviesList
         .map(movie => <MovieLayout 
                     key={movie.imdbID ? movie.imdbID : movie.Title} 
@@ -93,13 +91,13 @@ class Container extends Component {
                     runtime={movie.Runtime} 
                     genre={movie.Genre} 
                     director={movie.Director}
-                    formOpen={() => this.formEditOpen(movie)}
+                    formOpen={() => this.formEditOpen(movie, 'editForm')}
                     deleteMovie= {() => this.deleteApprovel(movie)}
                     />);  
 
         return(
             <div className="movieList">
-                <NewMovieLayout formOpen={this.formEditOpen}/>
+                <NewMovieLayout formOpen={()=> this.formEditOpen({},'newForm')}/>
                 {moviesList}
                 <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
 
