@@ -7,7 +7,6 @@ const initialState = {
         Genre: '',
         Runtime: '',
         Director: '',
-       
     }
 };
 

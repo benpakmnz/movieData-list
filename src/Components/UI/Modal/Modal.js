@@ -7,9 +7,13 @@ const Modal = props => {
     return (
         props.modalOpen ? 
         (<Fragment>
-            <Backdrop closeModal = { props.modalClose } > </Backdrop>
+            <Backdrop closeModal = {props.modalClose}></Backdrop>
             <div className = "modal">
-            <button className="modalCloseButton" onClick={props.modalClose}><FontAwesomeIcon className="imageIcon" icon="times"/></button>
+            <button 
+                className="modalCloseButton" 
+                onClick={props.modalClose}>
+                <FontAwesomeIcon className="imageIcon" icon="times"/>
+            </button>
                 {props.children}
             </div>
         </Fragment>) : null

@@ -28,7 +28,6 @@ export const initMovies = () => {
             "Breaking+Bad",
             "young+sheldon",
             "unreal"
-            
         ]
 
         return dispatch => {

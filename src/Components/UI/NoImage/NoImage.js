@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import './NoImage.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NoPoster = props => {
+const NoPoster = () => {
     return (
         <Fragment>
             <div className="noPoster">

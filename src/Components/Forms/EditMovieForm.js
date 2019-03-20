@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../MovieLayout/MovieLayout.scss';
 
 class EditMovieForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            stateEerrors: {}
-        }
+    constructor(props){
+        super(props)
+        // this.state={
+        //     stateErrors: {}
+        // }
 
         this.title = React.createRef()
         this.year = React.createRef()
@@ -20,8 +20,7 @@ class EditMovieForm extends Component {
         this.director = React.createRef()
     }
 
-    onSubmit = (event) => {
-        event.preventDefault()
+    onSubmit = () => {
         let movieData = {
             Title: this.title.current.value,
             Year: this.year.current.value,
@@ -29,8 +28,7 @@ class EditMovieForm extends Component {
             Runtime: this.runtime.current.value,
             Director: this.director.current.value,
             imdbID: this.props.selectedMovieData.imdbID,
-            Poster: this.props.selectedMovieData.Poster
-            
+            Poster: this.props.selectedMovieData.Poster 
         }
 
         if(this.props.selectedMovieData.imdbID){
@@ -38,48 +36,40 @@ class EditMovieForm extends Component {
         }else{
             this.props.onSubmitNewMovie(movieData)
         }
-    
         this.props.onFormCancel() 
     }
 
 
-    formValidation = (event, validate) => {
+    formValidation = (event) => {
         event.preventDefault()
-        if(!validate)
-        {this.onSubmit(event)
-           }else{
-                let movieUpdatedData = {
-                    Title: this.title.current.value,
-                    Year: this.year.current.value,
-                    Genre: this.genre.current.value,
-                    Runtime: this.runtime.current.value,
-                    Director: this.director.current.value,
-                    imdbID: this.props.selectedMovieData.imdbID
-                }
-                console.log('movieUpdatedData: '+ JSON.stringify(movieUpdatedData))
-
-                let errors = formValidator(movieUpdatedData, this.props.moviesList)
-                this.setState({
-                    stateEerrors: errors
-                })
-                console.log('stateErrors: ' + JSON.stringify(this.state.errors))
-                this.props.validateForm(errors)
-                if(Object.keys(errors).length === 0){
-                     this.onSubmit(event)
-                }
+        let movieUpdatedData = {
+            Title: this.title.current.value,
+            Year: this.year.current.value,
+            Genre: this.genre.current.value,
+            Runtime: this.runtime.current.value,
+            Director: this.director.current.value,
+            imdbID: this.props.selectedMovieData.imdbID
             }
-        }  
+
+        let errors = formValidator(movieUpdatedData, this.props.moviesList)       
+        this.props.validateForm(errors)
+        if(Object.keys(errors).length === 0){
+                this.onSubmit(event)
+        }
+    }  
 
 
     render(){
         return (
             <div className = "formLayout">
-                
                 {this.props.selectedMovieData.Poster ? 
-                <img className="formPoster" src={this.props.selectedMovieData.Poster} alt={this.props.selectedMovieData.Title}/> : 
+                    <img className="formPoster" src={this.props.selectedMovieData.Poster} 
+                         alt={this.props.selectedMovieData.Title}/> 
+                    : 
                     <div className="formPoster">
                     <FontAwesomeIcon className="imageIcons" icon="image"/>
-                    </div>} 
+                    </div>
+                } 
                 <form>
                     <div>
                         <p>* movie Title: 

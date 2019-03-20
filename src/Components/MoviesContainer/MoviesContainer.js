@@ -25,7 +25,6 @@ class Container extends Component {
 
     componentDidMount() {
         this.props.setMovieList()
-        console.log('componentDidMount: '+ JSON.stringify(this.state))
     }
 
     formEditOpen = (movie, selectedFormType) => {
@@ -36,7 +35,6 @@ class Container extends Component {
             modalType: 'form',
             formType: selectedFormType,
         })
-        console.log(this.state)
     }
     
     togglePopUp = () => {
@@ -45,25 +43,14 @@ class Container extends Component {
             modalMode: !this.state.modalMode,
             modalType: ''
         })
-        this.props.clearFormErrors()
     }
 
-    FormCancel = () => {
-        this.setState({
-            formMode: !this.state.formMode,
-            modalMode: !this.state.modalMode,
-            modalType: ''
-        })
-        this.props.clearFormErrors()
-    }
-
-    onSubmitForm = (movieData) => {
-        this.props.onSubmit(movieData)
+    formCancel = () => {
         this.togglePopUp()
         this.props.clearFormErrors()
     }
 
-    deleteApprovel = (movie) => {
+     deleteApprovel = (movie) => {
         this.setState({
             modalMode: !this.state.modalMode,
             movieToDelete: movie,
@@ -72,48 +59,53 @@ class Container extends Component {
     }
 
     deleteApproved = () => {
-        this.setState({
-            modalMode: !this.state.modalMode,
-            modalType: ''
-        });
+        this.togglePopUp()
         this.props.deleteMovie(this.state.movieToDelete.imdbID)
     }
 
-          
-    render(){
-        // console.log(this.props.moviesList)
-        const moviesList = this.props.moviesList
-        .map(movie => <MovieLayout 
-                    key={movie.imdbID ? movie.imdbID : movie.Title} 
-                    title={movie.Title} 
-                    poster={movie.Poster} 
-                    year={movie.Year} 
-                    runtime={movie.Runtime} 
-                    genre={movie.Genre} 
-                    director={movie.Director}
-                    formOpen={() => this.formEditOpen(movie, 'editForm')}
-                    deleteMovie= {() => this.deleteApprovel(movie)}
-                    />);  
 
+    modalMode = () => {
+        if(this.state.modalMode){
+            if(this.state.modalType === 'form'){
+                return( 
+                <EditMovieForm
+                    selectedMovieData = {this.state.selectedMovie} 
+                    onFormCancel = {this.formCancel}/>)
+            }
+            else if (this.state.modalType === 'delete'){
+                return(
+                <div class="deleteApprovalMessage">
+                    <p>Are you sure you want to remove the title</p>
+                    <h3 style={{margin: '0px 0px 25px 0px'}}> {this.state.movieToDelete.Title} ?</h3>
+                    <div className="popUpFooter">
+                        <button className="blueMovieButton" onClick= {this.deleteApproved}>yep, please delete it for me</button>
+                        <button className="redMovieButton" onClick={this.togglePopUp}>ooooops</button>
+                    </div>
+                </div>)}
+    }}
+
+    render(){
+        let moviesList = 
+            this.props.moviesList.map(movie => <MovieLayout 
+                key={movie.imdbID ? movie.imdbID : movie.Title} 
+                title={movie.Title} 
+                poster={movie.Poster} 
+                year={movie.Year} 
+                runtime={movie.Runtime} 
+                genre={movie.Genre} 
+                director={movie.Director}
+                formOpen={() => this.formEditOpen(movie, 'editForm')}
+                deleteMovie= {() => this.deleteApprovel(movie)}
+            />)
+        
         return(
             <div className="movieList">
                 <NewMovieLayout formOpen={()=> this.formEditOpen({},'newForm')}/>
                 {moviesList}
-                <Modal modalOpen = {this.state.modalMode} modalClose= {this.togglePopUp}>
-
-                        {this.state.modalType === 'form' ? <EditMovieForm selectedMovieData = {this.state.selectedMovie} 
-                        onFormCancel = {this.FormCancel}/> : null}
-                        {this.state.modalType === 'delete' ? 
-                        <div class="deleteApprovalMessage">
-                            <p>Are you sure you want to remove the title</p>
-                            <h3 style={{margin: '0px 0px 25px 0px'}}> {this.state.movieToDelete.Title} ?</h3>
-                            <div className="popUpFooter">
-                            <button className="blueMovieButton" onClick= {this.deleteApproved}>yep, please delete it for me</button>
-                            <button className="redMovieButton"onClick={this.togglePopUp}>ooooops</button>
-                            </div>
-
-                        </div>
-                        : null}
+                <Modal
+                    modalOpen = {this.state.modalMode} 
+                    modalClose= {this.togglePopUp}>
+                    {this.modalMode()}
                 </Modal>
             </div>
         );
